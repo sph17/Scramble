@@ -1,0 +1,5 @@
+{
+  "myWorkflow.input_bam_file": "/Users/sph35/cromwell/test.bam",
+  "myWorkflow.input_bam_index": "/Users/sph35/cromwell/test.bam.bai"
+}
+

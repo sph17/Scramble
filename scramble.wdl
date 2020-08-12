@@ -1,6 +1,21 @@
+version 1.0
+
 workflow myWorkflow {
+
+    ##################################
+    #### required basic arguments ####
+    ##################################
     
-    call myTask
+    input {
+        File input_bam_file
+        File input_bam_index
+    }
+    
+    call myTask{
+        input :
+            input_bam_file=input_bam_file,
+            input_bam_index=input_bam_index
+    }
 
     call myTask2{
         input: 
@@ -9,20 +24,31 @@ workflow myWorkflow {
 
 }
 
+
 task myTask {
-    command {
-        cluster_identifier /app/validation/test.bam > clusters.txt
+    
+    input {
+        File input_bam_file
+        File input_bam_index
     }
+    command {
+        cluster_identifier ${input_bam_file} > clusters.txt
+    }
+
     output {
         File out = "clusters.txt"
     }
+
     runtime {
         docker: "sphao/scramble_docker:latest"
     }
 }
 
 task myTask2 {
-    File infile
+    
+    input {
+        File infile
+    }
 
     command {
 
@@ -39,3 +65,19 @@ task myTask2 {
         docker: "sphao/scramble_docker:latest"
     }
 }
+
+
+    ############################################
+    #### for testing the built-in test file ####
+    ############################################
+#task myTask {
+#    command {
+#        cluster_identifier /app/validation/test.bam > clusters.txt
+#    }
+#    output {
+#        File out = "clusters.txt"
+#    }
+#    runtime {
+#        docker: "sphao/scramble_docker:latest"
+#    }
+#}

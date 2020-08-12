@@ -8,24 +8,23 @@ workflow myWorkflow {
     
     input {
         File input_bam_file
-        File input_bam_index
     }
     
-    call myTask{
+    call clusterID{
         input :
             input_bam_file=input_bam_file,
-            input_bam_index=input_bam_index
+            input_bam_index=input_bam_file + ".bai"
     }
 
-    call myTask2{
+    call scrambleMEI{
         input: 
-            infile=myTask.out
+            infile=clusterID.out
     }
 
 }
 
 
-task myTask {
+task clusterID{
     
     input {
         File input_bam_file
@@ -44,7 +43,7 @@ task myTask {
     }
 }
 
-task myTask2 {
+task scrambleMEI{
     
     input {
         File infile

@@ -1,5 +1,5 @@
 # SCRAMble
-# Stephanie Hao
+
 
 This is the repository for GeneDx-SCRAMble's (https://github.com/GeneDx/scramble) WDL workflow
 

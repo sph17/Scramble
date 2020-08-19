@@ -22,8 +22,8 @@ workflow myWorkflow {
     }
 
     output {
-    	File output1=clusterID.out
-    	File output2=scrambleMEI.out
+    	File clusterID_out=clusterID.out
+    	File scrambleMEI_out=scrambleMEI.out
     }
 
 }
